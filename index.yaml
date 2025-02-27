@@ -1,3 +1,13 @@
 apiVersion: v1
-entries: {}
-generated: "2025-02-27T18:03:26.771643368-03:00"
+entries:
+  generic-app:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2025-02-27T18:32:35.631756585-03:00"
+    description: A Helm chart for deploying any container application
+    digest: c8f16526606391aacbf0723c794822610756238ea9ef7e55062f94ff17348dcb
+    name: generic-app
+    urls:
+    - https://owiltoncezar.github.io/generic-app/generic-app-0.1.0.tgz
+    version: 0.1.0
+generated: "2025-02-27T18:32:35.630741231-03:00"
