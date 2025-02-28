@@ -42,13 +42,22 @@ Atualizar os repositórios Helm para garantir que você tenha a versão mais rec
 ```bash
 helm repo update
 ```
-Instalar o chart remoto usando o nome desejado para a release e, se necessário, especificar o namespace:
+Instalar o Helm chart remoto usando o nome desejado no namespace padrão (default):
+```bash
+helm install "nome-do-seu-app" generic-app/generic-app
+```
+Instalando em um namespace específico:
+
+Se você quiser instalar o chart em um namespace específico, use a opção --namespace:
 
 ```bash
-helm install "seu-nome-de-release" generic-app/generic-app --namespace "nome-do-namespace" --create-namespace
+helm install "nome-do-seu-app" generic-app/generic-app --namespace "nome-do-namespace"
 ```
-Nota: Se você não especificar um namespace, ele será instalado no namespace padrão (default).
+Se o namespace ainda não existir, adicione a flag --create-namespace para criá-lo automaticamente:
 
+```bash
+helm install "nome-do-seu-app" generic-app/generic-app --namespace "nome-do-namespace" --create-namespace
+```
 ### Instalar a partir de uma Pasta Local
 
 Para instalar localmente, você precisará clonar o repositório e depois usar o chart presente na pasta generic-app/. Siga os passos abaixo:
@@ -58,14 +67,13 @@ Primeiro, clone o repositório onde o Helm chart está armazenado:
 ```bash
 git clone https://github.com/owiltoncezar/generic-app.git
 ```
-Com o repositório clonado, você pode instalar o Helm chart diretamente do diretório generic-app/ usando o comando:
+Com o repositório clonado, você pode instalar o Helm chart diretamente do diretório generic-app/ no namespace padrão (default) usando o comando:
 
 ```bash
-helm install "seu-nome-de-release" ./generic-app
+helm install "nome-do-seu-app" ./generic-app/generic-app
 ```
-
-**Notas:** 
- - Substitua "seu-nome-de-release" pelo nome desejado para sua instalação. Esse nome será usado como prefixo dos recursos criados no cluster.
+ℹ️ **Notas:** 
+ - Substitua "nome-do-seu-app" pelo nome desejado para sua instalação. Esse nome será usado como prefixo dos recursos criados no cluster.
  - O ./generic-app é o caminho para a pasta onde o seu chart está localizado. Certifique-se de que a pasta contém o arquivo Chart.yaml, values.yaml, templates/, etc.
 
 Instalando em um namespace específico:
@@ -73,15 +81,13 @@ Instalando em um namespace específico:
 Se você quiser instalar o chart em um namespace específico, use a opção --namespace:
 
 ```bash
-helm install "seu-nome-de-release" ./generic-app --namespace "nome-do-namespace"
+helm install "nome-do-seu-app" ./generic-app/generic-app --namespace "nome-do-namespace"
 ```
 Se o namespace ainda não existir, adicione a flag --create-namespace para criá-lo automaticamente:
 
 ```bash
-helm install "seu-nome-de-release" ./generic-app --namespace "nome-do-namespace" --create-namespace
+helm install "nome-do-seu-app" ./generic-app/generic-app --namespace "nome-do-namespace" --create-namespace
 ```
-
-**Dica**: Se você não especificar um namespace, o Helm instalará os recursos no namespace padrão (default).
 
 ## 📌 Recursos Instalados
 
@@ -98,7 +104,15 @@ Para mudar a imagem do container, edite o values.yaml:
 
 ```yaml
 image:
-  repository: my-custom-app
-  tag: "2.0"
-  pullPolicy: Always
+  repository: httpd
+  tag: "latest"
+  pullPolicy: IfNotPresent
+```
+## ⚠️ Atenção
+Para desinstalar executar os comandos:
+```bash
+helm uninstall "nome-do-seu-app" --namespace "nome-do-namespace"
+```
+```bash
+kubectl delete namespace "nome-do-namespace"
 ```
