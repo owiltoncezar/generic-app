@@ -74,7 +74,8 @@ helm install "nome-do-seu-app" ./generic-app/generic-app
 ```
 ℹ️ **Notas:** 
  - Substitua "nome-do-seu-app" pelo nome desejado para sua instalação. Esse nome será usado como prefixo dos recursos criados no cluster.
- - O ./generic-app é o caminho para a pasta onde o seu chart está localizado. Certifique-se de que a pasta contém o arquivo Chart.yaml, values.yaml, templates/, etc.
+ - O ./generic-app/generic-app é o caminho para a pasta onde o seu chart está localizado. Certifique-se de que a pasta contém o arquivo Chart.yaml, values.yaml, templates/, etc.
+ - Se a sua pasta generic-app/generic-app está em /home, você deve executar o comando a partir da pasta /home.
 
 Instalando em um namespace específico:
 
@@ -108,7 +109,7 @@ image:
   tag: "latest"
   pullPolicy: IfNotPresent
 ```
-## ⚠️ Atenção
+## 🧹 Desinstalação
 Para desinstalar executar os comandos:
 ```bash
 helm uninstall "nome-do-seu-app" --namespace "nome-do-namespace"
