@@ -101,7 +101,4 @@ image:
   repository: my-custom-app
   tag: "2.0"
   pullPolicy: Always
-```  
-
-## 📜 Licença
-Este projeto está licenciado sob os termos da MIT License.
+```
